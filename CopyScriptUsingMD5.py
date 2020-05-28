@@ -2,12 +2,14 @@ import os, sys
 import shutil
 import hashlib
 
+# source directorypath of root opgeven, bijv c: or /
 dir_src = ("C:/Users/xxxxxx/temp_input_folder/")
-dir_dest = ("C:/Users/xxxxx/temp_output_folder/")
-extension = ("txt")
+# destination directory opgeven.
+dir_dest = ("C:/Users/xxxxxxx/temp_output_folder/")
+# extension opgeven, hoeft geen punt . te bevatten.
+extension = (".txt", "jpg", "jpeg", "xls", "doc")
 mydict = {}
 doublefilesdict = {}
-
 
 # genereer md5 hash waarde voor file in path, met gelimiteerd tot 64k buffer.
 def hashfile(path, blocksize = 65536):
@@ -28,7 +30,7 @@ def CheckDestinationFolder():
         print('Scanning %s...' % dirName)
         for filename in fileList:
             # alleen uitvoeren als files een bepaalde extensie hebben. .lower() voor incasesensitivity.
-            if filename.lower().endswith(extension):
+            if any([filename.endswith(tuple(extension)) for filename in filenames]):
                 # Wat is het path, waar de file in staat, maak daar samen 1 string van.
                 path = os.path.join(dirName, filename)
                 # Bereken hash
