@@ -2,8 +2,8 @@ import os, sys
 import shutil
 import hashlib
 
-dir_src = ("C:/Users/xxxxx/temp_input_folder/")
-dir_dest = ("C:/Users/xxxxxx/temp_output_folder/")
+dir_src = ("C:/Users/xxxxxx/temp_input_folder/")
+dir_dest = ("C:/Users/xxxxx/temp_output_folder/")
 extension = ("txt")
 mydict = {}
 doublefilesdict = {}
@@ -27,8 +27,8 @@ def CheckDestinationFolder():
     for dirName, subdirs, fileList in os.walk(dir_dest):
         print('Scanning %s...' % dirName)
         for filename in fileList:
-            # alleen uitvoeren als files een bepaalde extensie hebben.
-            if filename.endswith(extension):
+            # alleen uitvoeren als files een bepaalde extensie hebben. .lower() voor incasesensitivity.
+            if filename.lower().endswith(extension):
                 # Wat is het path, waar de file in staat, maak daar samen 1 string van.
                 path = os.path.join(dirName, filename)
                 # Bereken hash
