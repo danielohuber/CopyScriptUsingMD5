@@ -8,4 +8,4 @@ Using MD5 hash checksum, to verify content not already there. (duplicate.)
 
 created to have all my old backups, finally merged together.
 
-extension, seems to be case sensitve, will need to adjust it.
+extension with case sensitvity & multiple extensions searchable.
