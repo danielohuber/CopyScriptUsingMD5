@@ -9,3 +9,5 @@ Using MD5 hash checksum, to verify content not already there. (duplicate.)
 created to have all my old backups, finally merged together.
 
 extension with case sensitvity & multiple extensions searchable.
+
+Issue found.
