@@ -10,4 +10,4 @@ created to have all my old backups, finally merged together.
 
 extension with case sensitvity & multiple extensions searchable.
 
-Issue found.
+Issue found. Planning is to have this fixed this week.
