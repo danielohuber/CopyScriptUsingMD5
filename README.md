@@ -11,3 +11,4 @@ created to have all my old backups, finally merged together.
 extension with case sensitvity & multiple extensions searchable.
 
 Issue found. Planning is to have this fixed this week.
+another issue. Will be in fix of this week.
