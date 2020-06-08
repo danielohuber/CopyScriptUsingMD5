@@ -3,9 +3,9 @@ import shutil
 import hashlib
 
 # source directorypath of root opgeven, bijv c: or /
-dir_src = ("C:/Users/xxxxxx/temp_input_folder/")
+dir_src = ("/Users/xxxxx/inputdir/")
 # destination directory opgeven.
-dir_dest = ("C:/Users/xxxxxxx/temp_output_folder/")
+dir_dest = ("/Users/xxxxxx/outputdir/")
 # extension opgeven, hoeft geen punt . te bevatten.
 extension = (".txt", "jpg", "jpeg", "xls", "doc")
 mydict = {}
@@ -30,7 +30,7 @@ def CheckDestinationFolder():
         print('Scanning %s...' % dirName)
         for filename in fileList:
             # alleen uitvoeren als files een bepaalde extensie hebben. .lower() voor incasesensitivity.
-            if any([filename.endswith(tuple(extension)) for filename in filenames]):
+            if filename.endswith(extension):
                 # Wat is het path, waar de file in staat, maak daar samen 1 string van.
                 path = os.path.join(dirName, filename)
                 # Bereken hash
@@ -70,7 +70,19 @@ def CopySourceFiles():
                         print ( "Dubbele MD5 hash gevonden, in doublefilesdict geplaatst = ", file_hash + path )
                 else:
                     try:
-                        shutil.copy( path, dir_dest)                        
+                        # shutil.copy( path, dir_dest)
+                        
+                        
+                        # Wat is het path, waar de file in staat, maak daar samen 1 string van.
+                        destpath = os.path.join(dir_dest, filename)
+                        # aanngezien shutil.copy alles overschrijft. 
+                        fd = os.open(destpath, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                                # os.O_WRONLY − open for writing only
+                                # os.O_CREAT − create file if it does not exist
+                                # os.O_EXCL − error if create and file exists
+                                # os.O_NOFOLLOW − do not follow symlinks ! eventueel aanzetten voor verder script.
+                        shutil.copy( path, dir_dest)
+                     
                     except IOError as e:
                         print("Unable to copy file. %s" % e)
                     except:
