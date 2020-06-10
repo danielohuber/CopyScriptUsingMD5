@@ -13,3 +13,4 @@ created to have all my old backups, finally merged together.
 extension with case sensitvity & multiple extensions searchable.
 
 pre-check filename on destination forlder, before copying. (race issue though still possible.)
+Note to self : CombinefilenamewithMD5
