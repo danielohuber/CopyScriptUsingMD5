@@ -14,3 +14,5 @@ extension with case sensitvity & multiple extensions searchable.
 
 pre-check filename on destination forlder, before copying. (race issue though still possible.)
 Note to self : CombinefilenamewithMD5
+
+output needs to be re-written for race conditions. 
