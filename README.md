@@ -16,3 +16,5 @@ pre-check filename on destination forlder, before copying. (race issue though st
 Note to self : CombinefilenamewithMD5
 
 output needs to be re-written for race conditions. 
+
+Checked The weekend log - lot of issues still :(
