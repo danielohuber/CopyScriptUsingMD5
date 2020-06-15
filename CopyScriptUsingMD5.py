@@ -2,10 +2,10 @@ import os, sys
 import shutil
 import hashlib
 
-# source directorypath of root opgeven, bijv c: or /
-dir_src = ("/Users/xxxxx/inputdir/")
+# source directorypath of root opgeven, bijv c: or / - met r optie, ingelezen als raw string. (tbv van windows \ backslash)
+dir_src = (r"C:\Users\xxxxx\temp_input_folder")
 # destination directory opgeven.
-dir_dest = ("/Users/xxxxxx/outputdir/")
+dir_dest = (r"C:\Users\xxxxxx\temp_output_folder")
 # extension opgeven, hoeft geen punt . te bevatten.
 extension = (".txt", "jpg", "jpeg", "xls", "doc")
 mydict = {}
@@ -70,18 +70,34 @@ def CopySourceFiles():
                         print ( "Dubbele MD5 hash gevonden, in doublefilesdict geplaatst = ", file_hash + path )
                 else:
                     try:
-                        # shutil.copy( path, dir_dest)
-                        
-                        
-                        # Wat is het path, waar de file in staat, maak daar samen 1 string van.
-                        destpath = os.path.join(dir_dest, filename)
-                        # aanngezien shutil.copy alles overschrijft. 
+                        # aanngezien shutil.copy alles overschrijft, omzichtetige loop om zelfde naam bestanden niet te overschrijven met andere content.
+                        # Wat is het destination path, waar de file in gaat staan, maak daar samen 1 string van.
+                        destpath = os.path.join(dir_dest, filename)  # /output/testfile
+                        # lelijke opvraging, om extensie van filename te weten, en deze later te gebruiken.
+                        filename, file_extension = os.path.splitext(destpath)
+                        if os.path.isfile(destpath):
+                            # /output/testfile  is dus aanwezig.
+                            expand = 1
+                            while True:
+                                expand += 1
+                                # Bestandsnaam, slitten en bestandnaam <expand> + .extensie toevoegen.
+                                new_destpath = destpath.split(file_extension)[0] + str(expand) + file_extension
+                                if os.path.isfile(new_destpath):
+                                    # bestaat, bestandsnaam+1.ext ? dan opnieuw.
+                                    continue
+                                else:
+                                    destpath = new_destpath
+                                    # bestandsnaam+1.ext ? bestaat niet, of heeft zelfde MD5 waarde.
+                                    break
+                                
+                        # os.open als extra check om geen symlinks, etc te kopieren.
                         fd = os.open(destpath, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
                                 # os.O_WRONLY − open for writing only
                                 # os.O_CREAT − create file if it does not exist
                                 # os.O_EXCL − error if create and file exists
                                 # os.O_NOFOLLOW − do not follow symlinks ! eventueel aanzetten voor verder script.
-                        shutil.copy( path, dir_dest)
+
+                        shutil.copy( path, destpath)
                      
                     except IOError as e:
                         print("Unable to copy file. %s" % e)
