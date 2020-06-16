@@ -13,4 +13,4 @@ created to have all my old backups, finally merged together.
 extension with case sensitvity & multiple extensions searchable.
 
 pre-check filename on destination. 
-If file name there, create new file.
+If file name there, create new file. example : filename(+1).txt
