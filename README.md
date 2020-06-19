@@ -18,3 +18,5 @@ If file name there, create new file. example : filename(+1).txt
 in comnination with raspberry pi4 , using dafvs2 mount to cloud as output.. the performance is terrible.. 
 For next run, see to do a pre-check on size minimum. (thinking of files smaller then 1kb)
 Still analyzing
+
+Most likely issue is davfs2 protocol for cloud setup.. Will need to do some performance runs on python and setting up dictionaries. 
