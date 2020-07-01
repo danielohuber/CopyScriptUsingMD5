@@ -22,4 +22,4 @@ Still analyzing
 Most likely issue is davfs2 protocol for cloud setup.. Will need to do some performance runs on python and setting up dictionaries. 
 
 using new usb stick, first test looks much better.
-Succes! Tomorrow will show results
+Succes! Day after Tomorrow will show results
